@@ -1,34 +1,33 @@
 #ifndef INBOX_HPP
 #define INBOX_HPP
 
-#include "email.hpp"
-#include "statusMessage.hpp"
+#include "cellStackEmail.hpp"
 
-class inbox
+class Inbox
 {
 private:
-    int _qtdEmails;
-    email** _dataEmails;
+    CellStackEmail* _first;
+    CellStackEmail* _last;
+    int _size;
+
+    stackEmail* getStackEmailByPriority(int priority);
 
 public:
-    inbox();
-    ~inbox();
+    Inbox() { 
+        this->_first = NULL;
+        this->_last = NULL;
+        this->_size = 0; };
+    ~Inbox() { this->clean(); };
 
-    void addEmail(email email);
-    string getEmail();
+    bool isEmpty() { return this->_size == 0; };
 
-    int getQtdEmail();
+    void clean();
+
+    void insertEmail(Email);
+    void popFirst();
+
+    Email getEmail();
 };
-
-inbox::inbox()
-{
-    this->_qtdEmails = 0;
-    this->_dataEmails = (email**) malloc(0);
-}
-
-inbox::~inbox()
-{
-}
 
 
 #endif

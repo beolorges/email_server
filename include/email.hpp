@@ -5,45 +5,37 @@
 
 using namespace std;
 
-class email
+class Email
 {
 private:
-    int _idSender;
     int _priority;
     string _message;
+    int _idSender;
 
 
 public:
-    email(int idSender, int priority, string message);
-    ~email();
+    Email() {
+        this->_idSender = 0;
+        this->_priority = 0;
+        this->_message = " ";
+    };
 
-    string getMessage();
-    int getIdSender();
-    int getPriority();
-};
-
-email::email(int idSender, int priority, string message)
-{
+    Email(int idSender, int priority, string message){
     _idSender = idSender;
     _message = message;
     _priority = priority;
-}
+};
+    ~Email(){};
 
-email::~email()
-{
-}
+    string getMessage()const { return this->_message;};
+    int getIdSender() const {return this->_idSender;};
+    int getPriority() const {return this->_priority;};
 
-int email::getIdSender(){
-    return this->_idSender;
-}
-
-int email::getPriority(){
-    return this->_priority;
-}
-
-string email::getMessage(){
-    return this->_message;
-}
-
+    void operator = (const Email e){
+        this->_idSender = e.getIdSender();
+        this->_priority = e.getPriority();
+        this->_message = e.getMessage();
+    }
+};
 
 #endif

@@ -2,24 +2,39 @@
 #define STACK_EMAIL_HPP
 
 #include "email.hpp"
+#include "cellEmail.hpp"
+#include <stdlib.h>
 
 class stackEmail
 {
 private:
-    email* _data;
+    CellEmail* _first;
+    CellEmail* _last;
     int _size;
+    int _priority;
 
 public:
-    stackEmail() {};
-    ~stackEmail() {};
+    stackEmail() {
+        this->_size = 0;
+    };
+    stackEmail(int priority){
+        this->_size = 0;
+        this->_priority = priority;
+    };
+    ~stackEmail() {
+        clear();
+    };
 
-    /*Elimina o elemento mais ao topo da lista*/
+    int getPriority() { return this->_priority; };
+    bool isEmpty(){ return this->_size == 0; };
+
+    Email getEmail();
+
     void popFirst();
+    void pushBack(Email);
 
-    /*Coloca um email no final da lista*/
-    void pushBack(email);
+    void clear();
 
-    int getSize();
 };
 
 

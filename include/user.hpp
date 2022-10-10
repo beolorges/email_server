@@ -7,14 +7,14 @@ class user
 {
 private:
     int _id;
-    inbox _inbox;
+    Inbox _inbox;
 
 public:
     user(int id);
     ~user();
 
     statusMessage getEmail();
-    statusMessage sendEmail(email email);
+    statusMessage sendEmail(Email Email);
 
     statusMessage removeAccount();
 };
