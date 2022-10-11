@@ -56,6 +56,14 @@ stackEmail* Inbox::getStackEmailByPriority(int priority){
     if(this->_first->_priority == priority)
         return &this->_first->_data;
 
+    if(this->_first->_priority < priority){
+        CellStackEmail* newStackEmail = new CellStackEmail(priority);
+        this->_size++;
+
+        newStackEmail->_next = this->_first;
+        this->_first = newStackEmail;
+    }
+
     CellStackEmail* aux = this->_first;
 
     while(aux->_next != NULL){

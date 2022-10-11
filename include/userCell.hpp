@@ -8,17 +8,20 @@ class UserCell {
         User _data;
         UserCell* _left;
         UserCell* _right;
+        UserCell* _upperLevel;
 
     public:
         UserCell(){
             this->_data = User(-1);
             this->_left = NULL;
             this->_right = NULL;
+            this->_upperLevel = NULL;
         };
         UserCell(int id) { 
             this->_data = User(id); 
             this->_left = NULL;
             this->_right = NULL;
+            this->_upperLevel = NULL;
             };
         ~UserCell(){};
 

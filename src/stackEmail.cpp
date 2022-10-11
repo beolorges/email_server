@@ -36,7 +36,8 @@ void stackEmail::pushBack(Email email){
 
 Email stackEmail::getEmail(){
     if(isEmpty())
-        throw "This line is empty";
+        throw ErrorMessage(100, "CAIXA DE ENTRADA VAZIA");
+
 
     Email emailToReturn = this->_first->_data;
     popFirst();

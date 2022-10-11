@@ -3,6 +3,7 @@
 
 #include "email.hpp"
 #include "cellEmail.hpp"
+#include "errorMessage.hpp"
 #include <stdlib.h>
 
 class stackEmail

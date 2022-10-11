@@ -20,6 +20,11 @@ public:
         this->_message = " ";
     };
 
+    Email( int priority, string message){
+    _message = message;
+    _priority = priority;
+    };
+
     Email(int idSender, int priority, string message){
     _idSender = idSender;
     _message = message;

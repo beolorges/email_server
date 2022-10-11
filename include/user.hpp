@@ -2,6 +2,7 @@
 #define USER_HPP
 
 #include "inbox.hpp"
+#include "errorMessage.hpp"
 
 class User
 {

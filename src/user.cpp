@@ -2,7 +2,7 @@
 
 Email User::getEmail(){
     if(this->_inbox.isEmpty())
-        throw "Caixa de entrada vazia";
+        throw ErrorMessage(100, "CAIXA DE ENTRADA VAZIA");
 
     return this->_inbox.getEmail();
 }

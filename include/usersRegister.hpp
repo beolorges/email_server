@@ -2,6 +2,7 @@
 #define USERS_REGISTER_HPP
 
 #include "userCell.hpp"
+#include "errorMessage.hpp"
 
 class UsersRegister
 {
@@ -12,6 +13,9 @@ private:
     bool isIdAlreadyRegistered(int id);
     bool isEmpty() { return this->_size == 0; };
     UserCell* findWhereToInsert(int id);
+    UserCell* findUserCell(int id);
+    UserCell* findMinimum(UserCell* cell);
+    void transplant(UserCell* u, UserCell* v);
 
 public:
     UsersRegister(){
