@@ -3,30 +3,21 @@
 
 #include "inbox.hpp"
 
-class user
+class User
 {
 private:
     int _id;
     Inbox _inbox;
 
 public:
-    user(int id);
-    ~user();
+    User() {};
+    User(int id){ this->_id = id; };
+    ~User() {};
 
-    statusMessage getEmail();
-    statusMessage sendEmail(Email Email);
-
-    statusMessage removeAccount();
+    int getId();
+    Email getEmail();
+    void receiveEmail(Email);
 };
-
-user::user(int id)
-{
-    this->_id = id;
-}
-
-user::~user()
-{
-}
 
 
 #endif

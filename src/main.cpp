@@ -1,29 +1,29 @@
 #include "inbox.hpp"
 #include "email.hpp"
+#include "usersRegister.hpp"
 
 #include<iostream>
 
 using namespace std;
 
 int main(){
-    Inbox inboxTest;
-    Email firstEmailLvl10= Email(1, 10, "Priority lvl 10 add first");
-    Email secondEmailLvl10= Email(1, 10, "Priority lvl 10 add later");
-    Email thirdEmailLvl9= Email(1, 9, "Priority lvl 9");
-    Email thirdEmailLvl8= Email(1, 8, "Priority lvl 8");
+    UsersRegister testRegister = UsersRegister();
 
-    inboxTest.insertEmail(firstEmailLvl10);
-    inboxTest.insertEmail(thirdEmailLvl8);
-    inboxTest.insertEmail(secondEmailLvl10);
-    inboxTest.insertEmail(thirdEmailLvl9);
-    inboxTest.insertEmail(secondEmailLvl10);
+    testRegister.addUser(1);
+    testRegister.addUser(10);
+    testRegister.addUser(15);
+    testRegister.addUser(3);
+    testRegister.addUser(6);
+    testRegister.addUser(8);
+    testRegister.addUser(7);
+    testRegister.addUser(11);
+    testRegister.addUser(113);
+    testRegister.addUser(9);
 
+    testRegister.sendEmail(1, Email(10, 8, "Olá tudo bem?"));
+    testRegister.sendEmail(6, Email(10, 7, "Olá tudo legal?"));
 
-    cout << inboxTest.getEmail().getMessage() << endl;
-    cout << inboxTest.getEmail().getMessage() << endl;
-    cout << inboxTest.getEmail().getMessage() << endl;
-    cout << inboxTest.getEmail().getMessage() << endl;
-    cout << inboxTest.getEmail().getMessage() << endl;
-
+    cout << testRegister.findUser(1)->getEmail().getMessage() << endl;
+    cout << testRegister.findUser(6)->getEmail().getMessage() << endl;
 
 }

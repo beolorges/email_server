@@ -1,28 +1,34 @@
 #ifndef USERS_REGISTER_HPP
 #define USERS_REGISTER_HPP
 
-#include "user.hpp"
+#include "userCell.hpp"
 
-class usersRegister
+class UsersRegister
 {
 private:
-    user* _users;
+    UserCell* _first;
+    int _size;
+
+    bool isIdAlreadyRegistered(int id);
+    bool isEmpty() { return this->_size == 0; };
+    UserCell* findWhereToInsert(int id);
 
 public:
-    usersRegister();
-    ~usersRegister();
+    UsersRegister(){
+        this->_size = 0;
+        this->_first = new UserCell();
+    };
+    ~UsersRegister(){};
 
-    statusMessage addUser(int id);
-    statusMessage removeUser(int id);
+    void addUser(int id);
+    void removeUser(int id);
+
+    User* findUser(int id);
+
+    void sendEmail(int id, Email email);
 };
 
-usersRegister::usersRegister()
-{
-}
 
-usersRegister::~usersRegister()
-{
-}
 
 
 #endif
