@@ -13,15 +13,11 @@ private:
     EmailQueue* getEmailQueueByPriority(int priority);
 
 public:
-    Inbox() { 
-        this->_first = NULL;
-        this->_last = NULL;
-        this->_size = 0; 
-    };
+    Inbox();
 
-    ~Inbox() { this->clean(); };
+    ~Inbox();
 
-    bool isEmpty() { return this->_size == 0; };
+    bool isEmpty() const;
 
     void clean();
 
