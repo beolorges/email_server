@@ -1,12 +1,12 @@
 #ifndef CELL_STACK_EMAIL_HPP
 #define CELL_STACK_EMAIL_HPP
 
-#include "stackEmail.hpp"
+#include "emailQueue.hpp"
 
 class CellStackEmail {
     public:
         CellStackEmail(int priority){
-            this->_data = stackEmail(priority);
+            this->_data = EmailQueue(priority);
             this->_next = NULL;
             this->_priority = priority;
         };
@@ -16,7 +16,7 @@ class CellStackEmail {
         bool isEmpty() { return _data.isEmpty(); };
 
     private:
-        stackEmail _data;
+        EmailQueue _data;
         CellStackEmail* _next;
         int _priority;
 

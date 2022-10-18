@@ -16,7 +16,7 @@ void Inbox::popFirst(){
 }
 
 void Inbox::insertEmail(Email emailToInsert){
-    stackEmail* stackEmailToBeInserted = getStackEmailByPriority(emailToInsert.getPriority());
+    EmailQueue* stackEmailToBeInserted = getStackEmailByPriority(emailToInsert.getPriority());
     stackEmailToBeInserted->pushBack(emailToInsert);
 }
 
@@ -44,10 +44,10 @@ Email Inbox::getEmail(){
  * 
  * 
  * @param priority Prioridade do email a ser inserido.
- * @return stackEmail* Ponteiro para a fila de prioridade desejada.
+ * @return EmailQueue* Ponteiro para a fila de prioridade desejada.
  */
 
-stackEmail* Inbox::getStackEmailByPriority(int priority){
+EmailQueue* Inbox::getStackEmailByPriority(int priority){
     if(this->isEmpty()){
         CellStackEmail *newStackEmail = new CellStackEmail(priority);
         this->_first = newStackEmail;

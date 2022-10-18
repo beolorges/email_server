@@ -1,14 +1,14 @@
-#include "./stackEmail.hpp"
+#include "./emailQueue.hpp"
 
-void stackEmail::clear(){
+void EmailQueue::clear(){
     while(!isEmpty()){
         popFirst();
     }
 }
 
-void stackEmail::popFirst(){
+void EmailQueue::popFirst(){
 
-    CellEmail *aux = this->_first;
+    Email *aux = this->_first;
     if(this->_first->_next != NULL){
         this->_first = this->_first->_next;
     }
@@ -17,9 +17,8 @@ void stackEmail::popFirst(){
     delete(aux);
 }
 
-void stackEmail::pushBack(Email email){
-    CellEmail* cellToInsert = new CellEmail();
-    cellToInsert->_data = email;
+void EmailQueue::pushBack(Email email){
+    Email* cellToInsert = new Email(email);
 
     if(isEmpty()){
         this->_first = cellToInsert;
@@ -34,12 +33,12 @@ void stackEmail::pushBack(Email email){
     this->_size++;
 }
 
-Email stackEmail::getEmail(){
+Email EmailQueue::getEmail(){
     if(isEmpty())
         throw ErrorMessage(100, "CAIXA DE ENTRADA VAZIA");
 
 
-    Email emailToReturn = this->_first->_data;
+    Email emailToReturn = *this->_first;
     popFirst();
 
     return emailToReturn;

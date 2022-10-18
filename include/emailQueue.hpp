@@ -1,28 +1,29 @@
-#ifndef STACK_EMAIL_HPP
-#define STACK_EMAIL_HPP
+#ifndef EMAIL_QUEUE_H
+#define EMAIL_QUEUE_H
 
 #include "email.hpp"
-#include "cellEmail.hpp"
 #include "errorMessage.hpp"
 #include <stdlib.h>
 
-class stackEmail
+class EmailQueue
 {
 private:
-    CellEmail* _first;
-    CellEmail* _last;
+    Email* _first;
+    Email* _last;
     int _size;
     int _priority;
 
 public:
-    stackEmail() {
+    EmailQueue() {
         this->_size = 0;
     };
-    stackEmail(int priority){
+
+    EmailQueue(int priority){
         this->_size = 0;
         this->_priority = priority;
     };
-    ~stackEmail() {
+    
+    ~EmailQueue() {
         clear();
     };
 
