@@ -51,6 +51,7 @@ EmailQueue* Inbox::getStackEmailByPriority(int priority){
     if(this->isEmpty()){
         EmailQueue *newStackEmail = new EmailQueue(priority);
         this->_first = newStackEmail;
+        this->_last = _first;
         this->_size++;
 
         return this->_first;

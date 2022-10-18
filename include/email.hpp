@@ -16,13 +16,15 @@ private:
 
 public:
     Email() {
+        this->_next = NULL;
         this->_priority = 0;
         this->_message = " ";
     };
 
     Email( int priority, string message){
-    _message = message;
-    _priority = priority;
+        this->_next = NULL;
+        _message = message;
+        _priority = priority;
     };
 
     ~Email(){};

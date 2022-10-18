@@ -17,10 +17,17 @@ class EmailQueue
 
     public:
         EmailQueue() {
+            this->_first = NULL;
+            this->_last = NULL;
+            this->_next = NULL;
             this->_size = 0;
         };
 
         EmailQueue(int priority){
+            this->_first = NULL;
+            this->_last = NULL;
+            this->_next = NULL;
+            
             this->_size = 0;
             this->_priority = priority;
         };

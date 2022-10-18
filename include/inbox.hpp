@@ -16,7 +16,9 @@ public:
     Inbox() { 
         this->_first = NULL;
         this->_last = NULL;
-        this->_size = 0; };
+        this->_size = 0; 
+    };
+
     ~Inbox() { this->clean(); };
 
     bool isEmpty() { return this->_size == 0; };

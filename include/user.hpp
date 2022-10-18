@@ -6,18 +6,37 @@
 
 class User
 {
-private:
-    int _id;
-    Inbox _inbox;
+    private:
+        int _id;
+        Inbox* _inbox;
+        User* _left;
+        User* _right;
+        User* _upperLevel;
 
-public:
-    User() {};
-    User(int id){ this->_id = id; };
-    ~User() {};
+    public:
+        User() {
+            this->_inbox = new Inbox();
+            this->_left = NULL;
+            this->_right = NULL;
+            this->_upperLevel = NULL;
+        };
+        
+        User(int id){ 
+            this->_left = NULL;
+            this->_right = NULL;
+            this->_upperLevel = NULL;
+            this->_id = id; 
+            this->_inbox = new Inbox();
+        };
 
-    int getId();
-    Email getEmail();
-    void receiveEmail(Email);
+        ~User() {};
+
+        int getId();
+        Email getEmail();
+        void receiveEmail(Email);
+
+    friend class UsersRegister;
+
 };
 
 

@@ -4,13 +4,13 @@ bool UsersRegister::isIdAlreadyRegistered(int id){
     if(isEmpty())
         return false;
     
-    UserCell* aux = _first;
+    User* aux = _first;
 
     while(true){
-        if(aux->_data.getId() == id)
+        if(aux->getId() == id)
             return true;
 
-        if(id < aux->_data.getId()){
+        if(id < aux->getId()){
             if(aux->_left != NULL)
                 aux = aux->_left;
 
@@ -18,7 +18,7 @@ bool UsersRegister::isIdAlreadyRegistered(int id){
                 return false;
         }
 
-        else if(id > aux->_data.getId()){
+        else if(id > aux->getId()){
             if(aux->_right != NULL)
                 aux = aux->_right;
 
@@ -30,7 +30,7 @@ bool UsersRegister::isIdAlreadyRegistered(int id){
 
 }
 
-void UsersRegister::transplant(UserCell* u, UserCell* v){
+void UsersRegister::transplant(User* u, User* v){
     if(u->_upperLevel == NULL)
         this->_first = v;
 
@@ -43,8 +43,8 @@ void UsersRegister::transplant(UserCell* u, UserCell* v){
         v->_upperLevel = u->_upperLevel;
 }
 
-UserCell* UsersRegister::findMinimum(UserCell* x){
-    UserCell* aux = x;
+User* UsersRegister::findMinimum(User* x){
+    User* aux = x;
     
     while(aux->_left != NULL)
         aux = aux->_left;
@@ -54,7 +54,7 @@ UserCell* UsersRegister::findMinimum(UserCell* x){
 
 
 void UsersRegister::removeUser(int id){
-    UserCell* userCellToBeRemoved = this->findUserCell(id);
+    User* userCellToBeRemoved = this->findUser(id);
     
     if(userCellToBeRemoved->_left == NULL)
         transplant(userCellToBeRemoved, userCellToBeRemoved->_right);
@@ -63,7 +63,7 @@ void UsersRegister::removeUser(int id){
         transplant(userCellToBeRemoved, userCellToBeRemoved->_left);
     
     else{
-        UserCell* y = findMinimum(userCellToBeRemoved->_right);
+        User* y = findMinimum(userCellToBeRemoved->_right);
 
         if(y->_upperLevel != userCellToBeRemoved){
             transplant(y, y->_right);
@@ -84,59 +84,51 @@ void UsersRegister::addUser(int id){
     if(isIdAlreadyRegistered(id))
         throw ErrorMessage(200,"CONTA" + std::to_string(id) + "JÁ EXISTENTE");
     
-
-    User userToInsert = User(id);
-
     if(isEmpty()){
-        UserCell* firstCell = new UserCell(id);
+        User* firstCell = new User(id);
         _first = firstCell;
 
         this->_size++;
         return;
     }
 
-    UserCell* whereToInsert = findWhereToInsert(id);
-    whereToInsert->_data = userToInsert;
-    this->_size++;
-}
-
-UserCell* UsersRegister::findWhereToInsert(int id){
-    UserCell* aux = this->_first;
+    User* userToInsert = new User(id);
+    User* aux = this->_first;
 
     while(true){
-        if(id < aux->_data.getId()){
+        if(id < aux->getId()){
             if(aux->_left == NULL){
-                aux->_left = new UserCell();
+                aux->_left = userToInsert;
                 aux->_left->_upperLevel = aux;
-                return aux->_left;
+                this->_size++;
+                return;
             }
 
             aux = aux->_left;
         }
-        else if(id > aux->_data.getId()){
+        else if(id > aux->getId()){
             if(aux->_right == NULL){
-                aux->_right = new UserCell();
+                aux->_right = userToInsert;
                 aux->_right->_upperLevel = aux;
-                return aux->_right;
+                this->_size++;
+                return;
             }
 
             aux = aux->_right;
         }
     }
+
 }
+
 
 User* UsersRegister::findUser(int id){
-    return &this->findUserCell(id)->_data;
-}
-
-UserCell* UsersRegister::findUserCell(int id){
-    UserCell* aux = this->_first;
+    User* aux = this->_first;
 
     while(true){
-        if(aux->_data.getId() == id)
+        if(aux->getId() == id)
             return aux;
 
-        if(id < aux->_data.getId()){
+        if(id < aux->getId()){
             if(aux->_left != NULL)
                 aux = aux->_left;
 
@@ -144,7 +136,7 @@ UserCell* UsersRegister::findUserCell(int id){
                 throw ErrorMessage(200,"CONTA " + std::to_string(id) + " NÃO EXISTE");
         }
 
-        else if(id > aux->_data.getId()){
+        else if(id > aux->getId()){
             if(aux->_right != NULL)
                 aux = aux->_right;
 
