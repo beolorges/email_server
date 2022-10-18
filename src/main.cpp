@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int main(){
+int main(int argc, char* argv[]){
     Interface interfaceMail;
     FILE* file = fopen("../input.txt", "rt");
 
@@ -15,65 +15,45 @@ int main(){
 
     while(!feof(file)){
         char command[20];
-        fscanf(file, "%s", command);
+        int id;
+        fscanf(file, "%s %d", command, &id);
 
         if(strcmp(command, "CADASTRA") == 0){
-            int idToCreate;
-            fscanf(file, " %d", &idToCreate);
-            interfaceMail.createAccount(idToCreate);
+            interfaceMail.createAccount(id);
+            continue;
         }
 
-        else if(strcmp(command, "REMOVE") == 0){
-            int idToRemove;
-            fscanf(file, " %d", &idToRemove);
-            interfaceMail.removeAccount(idToRemove);
+        if(strcmp(command, "REMOVE") == 0){
+            interfaceMail.removeAccount(id);
+            continue;
         }
         
-            else if(strcmp(command, "ENTREGA") == 0){
-                int idToSend;
-                int priority;
-                
-                fscanf(file, " %d %d", &idToSend, &priority);
-                char word[20] = "";
+        if(strcmp(command, "ENTREGA") == 0){
+            int priority;
+            
+            fscanf(file, " %d", &priority);
 
-                string message = "";
-                fscanf(file, " %s", word);
-                while(strcmp(word, "FIM") != 0){
-                    message += word;
-                    message += " ";
-                    fscanf(file, " %s", word);
-                }
+            string message = "";
 
-                interfaceMail.sendMail(idToSend, priority, message);
+            for(char word[20] = ""; 
+            strcmp(word, "FIM") != 0;
+            fscanf(file, "%s", word)){
+                message += " ";
+                message += word;
             }
 
-                else{
-                    int idToGetEmail;
-                    fscanf(file, " %d", &idToGetEmail);
-                    interfaceMail.getMail(idToGetEmail);
-                }
+            message.erase(0, 2);
+
+            interfaceMail.sendMail(id, priority, message);
+            continue;
+        }
+
+        if(strcmp(command, "CONSULTA") == 0){
+            interfaceMail.getMail(id);
+            continue;
+        }
     
     }
 
-    // User* userTest = new User();
-    // // Inbox* inboxTest = new Inbox();
-    // Email firstEmailLvl10= Email(1, 10, "Priority lvl 10 add first");
-    // Email secondEmailLvl10= Email(1, 10, "Priority lvl 10 add later");
-    // Email thirdEmailLvl9= Email(1, 9, "Priority lvl 9");
-    // Email thirdEmailLvl8= Email(1, 8, "Priority lvl 8");
-
-    // userTest->receiveEmail(thirdEmailLvl8);
-    // userTest->receiveEmail(firstEmailLvl10);
-    // userTest->receiveEmail(secondEmailLvl10);
-    // userTest->receiveEmail(thirdEmailLvl9);
-
-    // cout << userTest->getEmail().getMessage() << endl;
-    // cout << userTest->getEmail().getMessage() << endl;
-    // cout << userTest->getEmail().getMessage() << endl;
-    // cout << userTest->getEmail().getMessage() << endl;
-    // cout << userTest->getEmail().getMessage() << endl;
-
     return 0;
-    
-
 }

@@ -35,16 +35,19 @@ Email Inbox::getEmail(){
     return emailToReturn;
 }
 
-stackEmail* Inbox::getStackEmailByPriority(int priority){
-    /*
-    DOIS PRINCIPAIS CASOS:
-        - SE JÁ TEM O STACK DE PRIORIDADE, NADA A FAZER, APENAS RETORNAR O STACK -> DATA
-        - SE NÃO:
-            - CRIAR UMA STACK COM ESSA PRIORIDADE;
-            - APONTAR ESSA STACK PARA A ANTERIOR -> NEXT;
-            - APONTAR A ANTERIOR PARA ESSA;
-    */
+/**
+ * @brief Função criada para retornar um ponteiro para a fila de prioridade desejada. 
+ * Verifica se já existe uma fila para a prioridade
+ * Se houver, retorna o ponteiro para essa stack
+ * Se não houver, aux receberá o ponteiro da fila com a posição anterior a qual
+ * a nova fila de prioridade deve ser inserida.
+ * 
+ * 
+ * @param priority Prioridade do email a ser inserido.
+ * @return stackEmail* Ponteiro para a fila de prioridade desejada.
+ */
 
+stackEmail* Inbox::getStackEmailByPriority(int priority){
     if(this->isEmpty()){
         CellStackEmail *newStackEmail = new CellStackEmail(priority);
         this->_first = newStackEmail;
@@ -75,6 +78,9 @@ stackEmail* Inbox::getStackEmailByPriority(int priority){
 
         aux = aux->_next;
     }
+
+    if(aux->_priority == priority)
+        return &aux->_data;
 
     CellStackEmail* newStackEmail = new CellStackEmail(priority);
     this->_size++;

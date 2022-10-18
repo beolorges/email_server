@@ -7,7 +7,6 @@ INCLUDE_FOLDER = ./include/
 BIN_FOLDER = ./bin/
 OBJ_FOLDER = ./obj/
 SRC_FOLDER = ./src/
-TEST_FOLDER = ./src/__unitTests__/
 
 # all sources, objs, and header files
 MAIN = Main
