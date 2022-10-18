@@ -4,10 +4,17 @@
 #include "usersRegister.h"
 #include <iostream>
 
+
+/**
+ * @brief Classe para funcionar como uma interface para a classe de UsersRegister
+ * Nessa classe, há o tratamento de exceções e as respectivas mensagens que devem ser
+ * printadas no terminal para cada comando.
+ * 
+ */
 class Interface{
     public:
-        Interface() { this->users = new UsersRegister();};
-        ~Interface() { delete (users); };
+        Interface();
+        ~Interface();
 
         void createAccount(int id);
         void removeAccount(int id);
