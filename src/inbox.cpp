@@ -7,7 +7,7 @@ void Inbox::clean(){
 }
 
 void Inbox::popFirst(){
-    CellStackEmail* aux = this->_first;
+    EmailQueue* aux = this->_first;
 
     this->_first = this->_first->_next;
 
@@ -21,10 +21,10 @@ void Inbox::insertEmail(Email emailToInsert){
 }
 
 Email Inbox::getEmail(){
-    Email emailToReturn = this->_first->_data.getEmail();
+    Email emailToReturn = this->_first->getEmail();
 
     if(this->_first->isEmpty()){
-        CellStackEmail* aux = this->_first;
+        EmailQueue* aux = this->_first;
 
         this->_first = this->_first->_next;
 
@@ -49,29 +49,29 @@ Email Inbox::getEmail(){
 
 EmailQueue* Inbox::getStackEmailByPriority(int priority){
     if(this->isEmpty()){
-        CellStackEmail *newStackEmail = new CellStackEmail(priority);
+        EmailQueue *newStackEmail = new EmailQueue(priority);
         this->_first = newStackEmail;
         this->_size++;
 
-        return &this->_first->_data;
+        return this->_first;
     }
 
     if(this->_first->_priority == priority)
-        return &this->_first->_data;
+        return this->_first;
 
     if(this->_first->_priority < priority){
-        CellStackEmail* newStackEmail = new CellStackEmail(priority);
+        EmailQueue* newStackEmail = new EmailQueue(priority);
         this->_size++;
 
         newStackEmail->_next = this->_first;
         this->_first = newStackEmail;
     }
 
-    CellStackEmail* aux = this->_first;
+    EmailQueue* aux = this->_first;
 
     while(aux->_next != NULL){
         if(aux->_priority == priority)
-            return &aux->_data;
+            return aux;
 
         if(aux->_next->_priority < priority)
             break;
@@ -80,13 +80,13 @@ EmailQueue* Inbox::getStackEmailByPriority(int priority){
     }
 
     if(aux->_priority == priority)
-        return &aux->_data;
+        return aux;
 
-    CellStackEmail* newStackEmail = new CellStackEmail(priority);
+    EmailQueue* newStackEmail = new EmailQueue(priority);
     this->_size++;
 
     newStackEmail->_next = aux->_next;
     aux->_next = newStackEmail;
 
-    return &newStackEmail->_data;
+    return newStackEmail;
 }

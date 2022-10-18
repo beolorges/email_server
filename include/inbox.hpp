@@ -1,13 +1,13 @@
 #ifndef INBOX_HPP
 #define INBOX_HPP
 
-#include "cellStackEmail.hpp"
+#include "emailQueue.hpp"
 
 class Inbox
 {
 private:
-    CellStackEmail* _first;
-    CellStackEmail* _last;
+    EmailQueue* _first;
+    EmailQueue* _last;
     int _size;
 
     EmailQueue* getStackEmailByPriority(int priority);

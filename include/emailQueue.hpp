@@ -7,35 +7,39 @@
 
 class EmailQueue
 {
-private:
-    Email* _first;
-    Email* _last;
-    int _size;
-    int _priority;
+    private:
+        Email* _first;
+        Email* _last;
+        int _size;
+        int _priority;
+        
+        EmailQueue* _next;
 
-public:
-    EmailQueue() {
-        this->_size = 0;
-    };
+    public:
+        EmailQueue() {
+            this->_size = 0;
+        };
 
-    EmailQueue(int priority){
-        this->_size = 0;
-        this->_priority = priority;
-    };
-    
-    ~EmailQueue() {
-        clear();
-    };
+        EmailQueue(int priority){
+            this->_size = 0;
+            this->_priority = priority;
+        };
 
-    int getPriority() { return this->_priority; };
-    bool isEmpty(){ return this->_size == 0; };
+        ~EmailQueue() {
+            clear();
+        };
 
-    Email getEmail();
+        int getPriority() { return this->_priority; };
+        bool isEmpty(){ return this->_size == 0; };
 
-    void popFirst();
-    void pushBack(Email);
+        Email getEmail();
 
-    void clear();
+        void popFirst();
+        void pushBack(Email);
+
+        void clear();
+
+    friend class Inbox;
 
 };
 
