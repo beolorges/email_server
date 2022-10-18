@@ -14,22 +14,11 @@ class User
         User* _upperLevel;
 
     public:
-        User() {
-            this->_inbox = new Inbox();
-            this->_left = NULL;
-            this->_right = NULL;
-            this->_upperLevel = NULL;
-        };
+        User();
         
-        User(int id){ 
-            this->_left = NULL;
-            this->_right = NULL;
-            this->_upperLevel = NULL;
-            this->_id = id; 
-            this->_inbox = new Inbox();
-        };
+        User(int id);
 
-        ~User() {};
+        ~User();
 
         int getId();
         Email getEmail();
