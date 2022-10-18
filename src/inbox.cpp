@@ -16,8 +16,8 @@ void Inbox::popFirst(){
 }
 
 void Inbox::insertEmail(Email emailToInsert){
-    EmailQueue* stackEmailToBeInserted = getStackEmailByPriority(emailToInsert.getPriority());
-    stackEmailToBeInserted->pushBack(emailToInsert);
+    EmailQueue* emailQueueToBeInserted = getEmailQueueByPriority(emailToInsert.getPriority());
+    emailQueueToBeInserted->pushBack(emailToInsert);
 }
 
 Email Inbox::getEmail(){
@@ -47,10 +47,10 @@ Email Inbox::getEmail(){
  * @return EmailQueue* Ponteiro para a fila de prioridade desejada.
  */
 
-EmailQueue* Inbox::getStackEmailByPriority(int priority){
+EmailQueue* Inbox::getEmailQueueByPriority(int priority){
     if(this->isEmpty()){
-        EmailQueue *newStackEmail = new EmailQueue(priority);
-        this->_first = newStackEmail;
+        EmailQueue *newEmailQueue = new EmailQueue(priority);
+        this->_first = newEmailQueue;
         this->_last = _first;
         this->_size++;
 
@@ -61,11 +61,11 @@ EmailQueue* Inbox::getStackEmailByPriority(int priority){
         return this->_first;
 
     if(this->_first->_priority < priority){
-        EmailQueue* newStackEmail = new EmailQueue(priority);
+        EmailQueue* newEmailQueue = new EmailQueue(priority);
         this->_size++;
 
-        newStackEmail->_next = this->_first;
-        this->_first = newStackEmail;
+        newEmailQueue->_next = this->_first;
+        this->_first = newEmailQueue;
     }
 
     EmailQueue* aux = this->_first;
@@ -83,11 +83,11 @@ EmailQueue* Inbox::getStackEmailByPriority(int priority){
     if(aux->_priority == priority)
         return aux;
 
-    EmailQueue* newStackEmail = new EmailQueue(priority);
+    EmailQueue* newEmailQueue = new EmailQueue(priority);
     this->_size++;
 
-    newStackEmail->_next = aux->_next;
-    aux->_next = newStackEmail;
+    newEmailQueue->_next = aux->_next;
+    aux->_next = newEmailQueue;
 
-    return newStackEmail;
+    return newEmailQueue;
 }

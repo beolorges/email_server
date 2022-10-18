@@ -10,7 +10,7 @@ private:
     EmailQueue* _last;
     int _size;
 
-    EmailQueue* getStackEmailByPriority(int priority);
+    EmailQueue* getEmailQueueByPriority(int priority);
 
 public:
     Inbox() { 

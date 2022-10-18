@@ -16,28 +16,14 @@ class EmailQueue
         EmailQueue* _next;
 
     public:
-        EmailQueue() {
-            this->_first = NULL;
-            this->_last = NULL;
-            this->_next = NULL;
-            this->_size = 0;
-        };
+        EmailQueue();
 
-        EmailQueue(int priority){
-            this->_first = NULL;
-            this->_last = NULL;
-            this->_next = NULL;
-            
-            this->_size = 0;
-            this->_priority = priority;
-        };
+        EmailQueue(int priority);
 
-        ~EmailQueue() {
-            clear();
-        };
+        ~EmailQueue();
 
-        int getPriority() { return this->_priority; };
-        bool isEmpty(){ return this->_size == 0; };
+        int getPriority() const ;
+        bool isEmpty() const ;
 
         Email getEmail();
 
