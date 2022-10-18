@@ -4,6 +4,14 @@
 
 using namespace std;
 
+
+/**
+ * @brief Main funciona scanneando a primeira string e inteiro para saber qual o comando
+ * a ser executado e para qual ID será executado. Após isso chama as funções da interface 
+ * referente ao comando passado.
+ * 
+ *
+ */
 int main(int argc, char* argv[]){
     Interface interfaceMail;
     FILE* file = fopen("../input.txt", "rt");
