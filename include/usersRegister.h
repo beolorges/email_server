@@ -11,17 +11,13 @@ private:
     int _size;
 
     bool isIdAlreadyRegistered(int id);
-    bool isEmpty() { return this->_size == 0; };
+    bool isEmpty() const;
     User* findMinimum(User* cell);
     void transplant(User* u, User* v);
 
 public:
-    UsersRegister(){
-        this->_first = NULL;
-        this->_size = 0;
-        this->_first = new User();
-    };
-    ~UsersRegister(){};
+    UsersRegister();
+    ~UsersRegister();
 
     void addUser(int id);
     void removeUser(int id);
