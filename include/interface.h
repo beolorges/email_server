@@ -1,7 +1,7 @@
 #ifndef INTERFACE_HPP
 #define INTERFACE_HPP
 
-#include "usersRegister.hpp"
+#include "usersRegister.h"
 #include <iostream>
 
 class Interface{

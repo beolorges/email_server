@@ -1,4 +1,4 @@
-#include "user.hpp"
+#include "user.h"
 
 Email User::getEmail(){
     if(this->_inbox->isEmpty())

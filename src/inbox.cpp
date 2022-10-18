@@ -1,4 +1,4 @@
-#include "inbox.hpp"
+#include "inbox.h"
 
 void Inbox::clean(){
     while(!isEmpty()){

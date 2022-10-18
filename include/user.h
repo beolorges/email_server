@@ -1,8 +1,8 @@
 #ifndef USER_HPP
 #define USER_HPP
 
-#include "inbox.hpp"
-#include "errorMessage.hpp"
+#include "inbox.h"
+#include "errorMessage.h"
 
 class User
 {

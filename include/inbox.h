@@ -1,7 +1,7 @@
 #ifndef INBOX_HPP
 #define INBOX_HPP
 
-#include "emailQueue.hpp"
+#include "emailQueue.h"
 
 class Inbox
 {

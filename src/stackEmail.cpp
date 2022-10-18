@@ -1,4 +1,4 @@
-#include "./emailQueue.hpp"
+#include "./emailQueue.h"
 
 void EmailQueue::clear(){
     while(!isEmpty()){

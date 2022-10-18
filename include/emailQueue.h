@@ -1,8 +1,8 @@
 #ifndef EMAIL_QUEUE_H
 #define EMAIL_QUEUE_H
 
-#include "email.hpp"
-#include "errorMessage.hpp"
+#include "email.h"
+#include "errorMessage.h"
 #include <stdlib.h>
 
 class EmailQueue

@@ -1,4 +1,4 @@
-#include "interface.hpp"
+#include "interface.h"
 
 void Interface::createAccount(int id){
     try

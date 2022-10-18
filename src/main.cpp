@@ -1,4 +1,4 @@
-#include "interface.hpp"
+#include "interface.h"
 #include<string.h>
 #include<iostream>
 

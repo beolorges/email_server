@@ -1,8 +1,8 @@
 #ifndef USERS_REGISTER_HPP
 #define USERS_REGISTER_HPP
 
-#include "user.hpp"
-#include "errorMessage.hpp"
+#include "user.h"
+#include "errorMessage.h"
 
 class UsersRegister
 {
