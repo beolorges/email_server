@@ -150,20 +150,18 @@ void UsersRegister::addUser(int id){
         throw ErrorMessage(200,"CONTA" + std::to_string(id) + "JÁ EXISTENTE");
     
     if(isEmpty()){
-        User* firstCell = new User(id);
-        _first = firstCell;
+        _first = new User(id);
 
         this->_size++;
         return;
     }
 
-    User* userToInsert = new User(id);
     User* aux = this->_first;
 
     while(true){
         if(id < aux->getId()){
             if(aux->_left == NULL){
-                aux->_left = userToInsert;
+                aux->_left = new User(id);
                 aux->_left->_upperLevel = aux;
                 this->_size++;
                 return;
@@ -173,7 +171,7 @@ void UsersRegister::addUser(int id){
         }
         else if(id > aux->getId()){
             if(aux->_right == NULL){
-                aux->_right = userToInsert;
+                aux->_right = new User(id);
                 aux->_right->_upperLevel = aux;
                 this->_size++;
                 return;

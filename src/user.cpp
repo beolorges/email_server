@@ -28,7 +28,9 @@ User::User(int id){
  * @brief Destroy the User:: User object
  * 
  */
-User::~User(){}
+User::~User(){
+    delete this->_inbox;
+}
 
 /**
  * @brief Retorna o email de maior prioridade inserido primeiro e o apaga.

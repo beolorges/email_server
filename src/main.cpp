@@ -14,7 +14,13 @@ using namespace std;
  */
 int main(int argc, char* argv[]){
     Interface interfaceMail;
-    FILE* file = fopen("../input.txt", "rt");
+
+    if(!argv[1]){
+        cout << "Passe o nome do arquivo como parâmetro no tipo ../<NOMEDOARQUIVO>.txt" << endl;
+        return -1;
+    }
+
+    FILE* file = fopen(argv[1], "rt");
 
     if(file == NULL){
         cout << "Arquivo não encontrado" << endl;
